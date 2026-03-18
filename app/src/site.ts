@@ -24,11 +24,8 @@ export interface Site
 
 export const site: Site = {
 	lang: 'en',
-	title: 'Astro Template',
-	description: {
-		'en': 'Template project for an Astro web application',
-		'fr': 'Modèle de projet pour une application web Astro',
-	},
+	title: 'Secret Note',
+	description: 'Online encryption tool for sharing secret notes.',
 	version: GITHUB_SHA || VERSION_TAG || 'dev',
 	author: 'Matiboux',
 	themeColor: '#ffffff',
@@ -39,5 +36,5 @@ export const site: Site = {
 
 export const githubRepositoryUrl: string = (
 	GITHUB_REPOSITORY_URL
-	|| 'https://github.com/matiboux/astro-template'
+	|| 'https://github.com/matiboux/secret-note'
 )

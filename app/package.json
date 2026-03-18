@@ -1,5 +1,5 @@
 {
-  "name": "astro-template",
+  "name": "secret-note",
   "author": "Matiboux",
   "license": "MIT-0",
   "version": "0.0.1",
@@ -19,12 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matiboux/astro-template.git"
+    "url": "git+https://github.com/matiboux/secret-note.git"
   },
   "bugs": {
-    "url": "https://github.com/matiboux/astro-template/issues"
+    "url": "https://github.com/matiboux/secret-note/issues"
   },
-  "homepage": "https://github.com/matiboux/astro-template#readme",
+  "homepage": "https://github.com/matiboux/secret-note#readme",
   "dependencies": {
     "@astrojs/check": "^0.9.6",
     "@iconify-json/mdi": "^1.2.3",

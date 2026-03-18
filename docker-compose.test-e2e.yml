@@ -1,6 +1,6 @@
 # Services overrides for testing
 
-name: astro-template-test-e2e
+name: secret-note-test-e2e
 
 x-common:
 

@@ -1,6 +1,6 @@
 # Services overrides for testing
 
-name: astro-template-test-unit
+name: secret-note-test-unit
 
 x-common:
 
