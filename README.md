@@ -39,4 +39,4 @@ The site will be available at [http://localhost:8080](http://localhost:8080).
 
 Copyright (c) 2024-2025 [Matiboux](https://github.com/matiboux) ([matiboux.me](https://matiboux.me))
 
-Licensed under the [MIT No Attribution License (MIT-0)](https://opensource.org/license/MIT-0). You can see a copy in the [LICENSE](LICENSE) file.
+Licensed under the [MIT License](https://opensource.org/license/MIT). You can see a copy in the [LICENSE](LICENSE) file.
