@@ -1,0 +1,57 @@
+{
+  "name": "astro-template",
+  "author": "Matiboux",
+  "license": "MIT-0",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "check": "astro check --tsconfig tsconfig.prod.json",
+    "build-only": "astro build",
+    "build": "pnpm run check && pnpm run build-only",
+    "astro": "astro",
+    "astro:sync": "astro sync",
+    "astro:preview": "astro preview",
+    "test:vitest": "vitest run",
+    "test:playwright": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matiboux/astro-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/matiboux/astro-template/issues"
+  },
+  "homepage": "https://github.com/matiboux/astro-template#readme",
+  "dependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/twemoji": "^1.2.5",
+    "@iconify/tailwind4": "^1.2.1",
+    "@tailwindcss/vite": "^4.2.1",
+    "astro": "^5.18.0",
+    "sass": "^1.97.3",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^22.19.13",
+    "vitest": "^3.2.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "volar-service-emmet@0.0.66": "0.0.67",
+      "lodash@>=4.0.0 <=4.17.22": ">=4.17.23",
+      "svgo@=4.0.0": ">=4.0.1",
+      "devalue@<5.6.4": ">=5.6.4",
+      "devalue@<=5.6.3": ">=5.6.4"
+    }
+  },
+  "imports": {
+    "#global.css": "./src/styles/global.css",
+    "#tailwind.css": "./src/styles/tailwind.css"
+  }
+}

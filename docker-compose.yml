@@ -1,0 +1,11 @@
+# Services definition for building & deploying
+
+name: astro-template
+
+services:
+
+  app:
+    # Extend
+    extends:
+      file: ./app/docker-compose-app.yml
+      service: app
