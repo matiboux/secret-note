@@ -1,74 +1,33 @@
 ---
 import Layout from '~/layouts/Layout.astro'
-import LocalesPicker from '~/components/LocalesPicker/LocalesPicker.astro'
-import { GITHUB_REPOSITORY_URL } from 'astro:env/client'
+import LocaleSwitch from '~/components/LocaleSwitch.astro'
+import AppForm from '~/components/AppForm.svelte'
+import Footer from '~/components/Footer.astro'
 
 import { i18nFactory } from '~/i18n'
 const _ = i18nFactory(Astro.currentLocale as any)
-
-import { site } from '~/site'
-
-const githubRepositoryUrl = (
-	GITHUB_REPOSITORY_URL ||
-	'https://github.com/matiboux/astro-template'
-)
 ---
 
-<Layout>
+<Layout
+	bodyClass="bg-gray-100 h-screen"
+>
 
-	<p>
-		<span class="icon icon-[mdi--hand-wave] icon-align icon-fw"></span>
-		{_('Welcome!')}
-	</p>
+	<div class="flex flex-col justify-center items-center min-h-full overflow-y gap-8 p-8 w-full max-w-[calc(1000px+2*2rem)] mx-auto">
+		<div class="bg-white shadow-lg rounded-lg p-6 w-full space-y-4">
+			<div class="flex items-start justify-between">
+				<h1 class="text-4xl font-bold">
+					Secret Note
+				</h1>
+				<LocaleSwitch />
+			</div>
+			<p class="text-gray-600">
+				{_('Online encryption tool for sharing secret notes.')}
+			</p>
 
-	<LocalesPicker lang={Astro.currentLocale} />
+			<AppForm class="home text-black group-hover:text-gray mt-4" locale={Astro.currentLocale} client:load />
+		</div>
 
-	<p set:html={_({
-		en: 'Selected language: <code>{lang}</code>.',
-		fr: 'Langue sélectionnée : <code>{lang}</code>.',
-		de: 'Ausgewählte Sprache: <code>{lang}</code>.',
-		es: 'Idioma seleccionado: <code>{lang}</code>.',
-	}, { lang: Astro.currentLocale })} />
-
-	<p set:html={_({
-		en: 'Version: <code>{version}</code>.',
-		fr: 'Version : <code>{version}</code>.',
-		de: 'Version: <code>{version}</code>.',
-		es: 'Versión: <code>{version}</code>.',
-	}, { version: site.version || 'dev' })} />
-
-	{githubRepositoryUrl &&
-		<p>
-			{_({
-				en: 'GitHub repository:',
-				fr: 'Dépôt GitHub :',
-				de: 'GitHub-Repository:',
-				es: 'Repositorio de GitHub:',
-			})}
-			<a href={githubRepositoryUrl}>
-				{githubRepositoryUrl.match(/\.com\/([^/]+\/[^/]+)/)?.[1]}
-			</a>
-		</p>
-	}
+		<Footer class="w-full" />
+	</div>
 
 </Layout>
-
-<style lang="scss">
-@reference "#tailwind.css";
-
-:global(body) {
-	@apply p-4;
-}
-
-p {
-	@apply mb-4;
-
-	:global(code) {
-		@apply bg-gray-100 px-1 border border-gray-300 rounded;
-	}
-}
-
-a {
-	@apply text-blue-600 hover:text-blue-700 hover:underline;
-}
-</style>
