@@ -4,7 +4,7 @@ import type { DefaultLocaleKeys } from './types.d.ts'
 
 const locale = {
 	'Welcome!': 'Bienvenue !',
-	// Index
+	'Secret Note': 'Note Secrète',
 	'Online encryption tool for sharing secret notes.': 'Outil de chiffrement en ligne pour partager des notes secrètes.',
 } as const
 
