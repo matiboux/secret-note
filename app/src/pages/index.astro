@@ -1,0 +1,42 @@
+---
+// This is a redirect page that will:
+// - send users to the appropriate language version based on their browser language
+// - preserve URL path, query parameters, and hash fragments
+---
+
+<html>
+	<head>
+
+		<title>Redirecting...</title>
+
+		<script>
+			function getRedirectLanguage()
+			{
+				// Supported languages in the order of priority
+				const supportedLanguages = ['en', 'fr']
+
+				const acceptLanguage = navigator.language || ''
+				for (const lang of supportedLanguages)
+				{
+					if (acceptLanguage.toLowerCase().includes(lang))
+					{
+						return lang
+					}
+				}
+
+				// Default to first supported language if no match is found
+				return supportedLanguages[0] || 'en'
+			}
+
+			const redirectLang = getRedirectLanguage()
+			// window.location.href = `/${redirectLang}/`; // WRONG: This would lose the URL path, query parameters, and hash fragments
+			window.location.href = `/${redirectLang}${window.location.pathname}${window.location.search}${window.location.hash}`
+		</script>
+
+	</head>
+	<body>
+
+		<p>Redirecting...</p>
+
+	</body>
+</html>
