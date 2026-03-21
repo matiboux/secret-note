@@ -1,74 +1,42 @@
 ---
-import Layout from '~/layouts/Layout.astro'
-import LocalesPicker from '~/components/LocalesPicker/LocalesPicker.astro'
-import { GITHUB_REPOSITORY_URL } from 'astro:env/client'
-
-import { i18nFactory } from '~/i18n'
-const _ = i18nFactory(Astro.currentLocale as any)
-
-import { site } from '~/site'
-
-const githubRepositoryUrl = (
-	GITHUB_REPOSITORY_URL ||
-	'https://github.com/matiboux/astro-template'
-)
+// This is a redirect page that will:
+// - send users to the appropriate language version based on their browser language
+// - preserve URL path, query parameters, and hash fragments
 ---
 
-<Layout>
+<html>
+	<head>
 
-	<p>
-		<span class="icon icon-[mdi--hand-wave] icon-align icon-fw"></span>
-		{_('Welcome!')}
-	</p>
+		<title>Redirecting...</title>
 
-	<LocalesPicker lang={Astro.currentLocale} />
+		<script>
+			function getRedirectLanguage()
+			{
+				// Supported languages in the order of priority
+				const supportedLanguages = ['en', 'fr']
 
-	<p set:html={_({
-		en: 'Selected language: <code>{lang}</code>.',
-		fr: 'Langue sélectionnée : <code>{lang}</code>.',
-		de: 'Ausgewählte Sprache: <code>{lang}</code>.',
-		es: 'Idioma seleccionado: <code>{lang}</code>.',
-	}, { lang: Astro.currentLocale })} />
+				const acceptLanguage = navigator.language || ''
+				for (const lang of supportedLanguages)
+				{
+					if (acceptLanguage.toLowerCase().includes(lang))
+					{
+						return lang
+					}
+				}
 
-	<p set:html={_({
-		en: 'Version: <code>{version}</code>.',
-		fr: 'Version : <code>{version}</code>.',
-		de: 'Version: <code>{version}</code>.',
-		es: 'Versión: <code>{version}</code>.',
-	}, { version: site.version || 'dev' })} />
+				// Default to first supported language if no match is found
+				return supportedLanguages[0] || 'en'
+			}
 
-	{githubRepositoryUrl &&
-		<p>
-			{_({
-				en: 'GitHub repository:',
-				fr: 'Dépôt GitHub :',
-				de: 'GitHub-Repository:',
-				es: 'Repositorio de GitHub:',
-			})}
-			<a href={githubRepositoryUrl}>
-				{githubRepositoryUrl.match(/\.com\/([^/]+\/[^/]+)/)?.[1]}
-			</a>
-		</p>
-	}
+			const redirectLang = getRedirectLanguage()
+			// window.location.href = `/${redirectLang}/`; // WRONG: This would lose the URL path, query parameters, and hash fragments
+			window.location.href = `/${redirectLang}${window.location.pathname}${window.location.search}${window.location.hash}`
+		</script>
 
-</Layout>
+	</head>
+	<body>
 
-<style lang="scss">
-@reference "#tailwind.css";
+		<p>Redirecting...</p>
 
-:global(body) {
-	@apply p-4;
-}
-
-p {
-	@apply mb-4;
-
-	:global(code) {
-		@apply bg-gray-100 px-1 border border-gray-300 rounded;
-	}
-}
-
-a {
-	@apply text-blue-600 hover:text-blue-700 hover:underline;
-}
-</style>
+	</body>
+</html>

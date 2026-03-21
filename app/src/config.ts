@@ -36,8 +36,8 @@ export const i18n = {
 		fr,
 	},
 	routing: {
-		prefixDefaultLocale: false,
-		redirectToDefaultLocale: true,
+		prefixDefaultLocale: true,
+		redirectToDefaultLocale: false, // Manual redirection handling
 		fallbackType: 'rewrite',
 	},
 } as const satisfies I18nConfig
