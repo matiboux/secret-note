@@ -1,0 +1,39 @@
+---
+import Layout from '~/layouts/Layout.astro'
+---
+
+<Layout>
+
+	<p>
+		<span class="icon icon-[mdi--emoticon-sad] icon-align icon-fw"></span>
+		Page not found
+	</p>
+
+	<p>
+		<a href="/">
+			<span class="icon icon-[mdi--arrow-left] icon-align icon-fw"></span>
+			Go back to homepage
+		</a>
+	</p>
+
+</Layout>
+
+<style lang="scss">
+@reference "#tailwind.css";
+
+:global(body) {
+	@apply p-4;
+}
+
+p {
+	@apply mb-4;
+
+	:global(code) {
+		@apply bg-gray-100 px-1 border border-gray-300 rounded;
+	}
+}
+
+a {
+	@apply text-blue-600 hover:text-blue-700 hover:underline;
+}
+</style>
