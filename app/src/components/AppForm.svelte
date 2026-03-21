@@ -287,17 +287,27 @@ async function copyPublicKeyToClipboard()
 	setCopiedItem('copyPublicKey')
 }
 
-async function copyShareLinkToClipboard()
+function getShareLink(): string | null
 {
 	if (!publicKeyEncoded)
+	{
+		return null
+	}
+
+	return `${window.location.origin}/#pubkey:${publicKeyEncoded}`
+}
+
+async function copyShareLinkToClipboard()
+{
+	setCopiedItem(null)
+
+	const shareLink = getShareLink()
+
+	if (!shareLink)
 	{
 		appError('No public key available to generate share link.')
 		return
 	}
-
-	setCopiedItem(null)
-
-	const shareLink = `${window.location.origin}${window.location.pathname}#pubkey:${publicKeyEncoded}`
 
 	try
 	{
@@ -314,15 +324,16 @@ async function copyShareLinkToClipboard()
 
 async function copyShareTextToClipboard()
 {
-	if (!publicKeyEncoded)
+	setCopiedItem(null)
+
+	const shareLink = getShareLink()
+
+	if (!shareLink)
 	{
 		appError('No public key available to generate share text.')
 		return
 	}
 
-	setCopiedItem(null)
-
-	const shareLink = `${window.location.origin}${window.location.pathname}#pubkey:${publicKeyEncoded}`
 	const shareText = (
 		'Hi! I\'d like to share a secret note with you. ' +
 		'Here\'s the link with my public key so you can make sure it\'s from me. ' +
